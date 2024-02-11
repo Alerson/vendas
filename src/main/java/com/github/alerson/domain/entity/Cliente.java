@@ -1,10 +1,36 @@
 package com.github.alerson.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.Set;
+
+@Entity
+@Table
 public class Cliente {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(name = "nome", length = 100)
     private String nome;
 
+    @Column(name = "cpf", length = 11)
+    private String cpf;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    private Set<Pedido> pedidos;
+
     public Cliente() {
+    }
+
+    public Set<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public Cliente(String nome) {
@@ -14,6 +40,14 @@ public class Cliente {
     public Cliente(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Integer getId() {
@@ -37,6 +71,7 @@ public class Cliente {
         return "Cliente{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
                 '}';
     }
 }
