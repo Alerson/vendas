@@ -33,7 +33,7 @@ public class ProdutoController {
         return produtoRepository.save(produto);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Integer id) {
         produtoRepository
