@@ -3,5 +3,6 @@
 - Spring Boot
 - H2 Database
 - Spring Data JPA
+- Custom Exception Handler
 
 The goal is to evolve the API by incorporating additional technologies to align it with industry standards. Currently, it is in the early stages of development.
